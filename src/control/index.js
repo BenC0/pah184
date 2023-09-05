@@ -1,5 +1,6 @@
 import "./index.css"
 import { Variant } from "../norman"
+import { IncreasinglyTracker } from "../Increasingly"
 import { ExtractVariantName } from "../norman/ExtractVariantName"
 
 const conditions = _ => {
@@ -12,6 +13,12 @@ const conditions = _ => {
 function action() {
     this.log("Action loaded")
     console.warn(this)
+    const incTracker = new IncreasinglyTracker({
+        variant: this,
+        debug: false,
+        target: ".plp_collection_bk"
+    })
+    incTracker.init()
 }
 
 function fallback() {
