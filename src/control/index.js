@@ -1,3 +1,4 @@
+import "./index.css"
 import { Variant } from "../norman"
 import { ExtractVariantName } from "../norman/ExtractVariantName"
 

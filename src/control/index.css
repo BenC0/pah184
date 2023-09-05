@@ -1,0 +1,6 @@
+.pah .pah000_loaded,
+body.pah000_loaded {
+    & .plp_collection_bk {
+        display: none !important;
+    }
+}
