@@ -1,4 +1,4 @@
-import { poll } from "../norman"
+import { TestElement, poll } from "../norman"
 
 export class IncreasinglyTracker {
     constructor(options = {}) {
@@ -22,17 +22,21 @@ export class IncreasinglyTracker {
         }
     }
 
-    build_element_object() {
+    track_target() {
+        this.config.variant.track_event("Increasingly Collection Displayed")
         this.element = {}
         this.element.container = document.querySelector(this.config.target)
         this.element.products = this.element.container.querySelectorAll(".inc_col_lection_item_bk")
-        this.elements.products.map(product => { return product })
-        // .inc_col_lection_checkout_btn
         this.config.debug && console.warn({ element: this.element })
-    }
-
-    track_target() {
-        this.build_element_object()
+        this.element.products.forEach(product => {
+            let btn = product.querySelector(".inc_col_lection_checkout_btn")
+            if (!!btn) {
+                btn.addEventListener("click", e => {
+                    this.config.variant.track_event("Increasingly Recommendation Clicked")
+                })
+            }
+        })
+        this.config.debug && console.warn({ element: this.element })
     }
 
     detect_target() {
